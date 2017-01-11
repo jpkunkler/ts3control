@@ -9,6 +9,9 @@ import sys
 import time
 from prettytable import PrettyTable
 
+# import teamspeak connection credentials from separate file credentials.py
+from credentials import *
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
 
@@ -54,8 +57,8 @@ def main():
     ########################################################
 
     try:
-        conn = ts3.TS3Server('triscle.de', 10011)
-        conn.login('serveradmin', 'eVsZO6LZ')
+        conn = ts3.TS3Server(ts_ip, query_port)
+        conn.login(ts_admin, ts_pw)
     except:
         print 'Connection error.'
     else:
