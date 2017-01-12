@@ -108,6 +108,27 @@ def main():
                     user_status = "{curr}/{max}".format(curr=clients, max=max_clients)
                     t.add_row([uid, name, port, status, user_status])
             print t
+        elif args['status'] == 'clients' or args['status'] == 'user':
+            t = PrettyTable(['Client ID','DB ID', 'Nickname', 'Channel', 'Online since'])
+            t.align = 'l'
+            t.align['Channel'] = 'c'
+            t.align['Client ID'] = 'c'
+            for server in servers:
+                conn.use(server['virtualserver_id'])
+                clientlist = conn.send_command('clientlist').data
+                for client in clientlist:
+                    if not 'serveradmin' in client['client_nickname']:
+                         nickname = client['client_nickname']
+                         clid = client['clid']
+                         channel = conn.send_command('channelinfo cid={}'.format(client['cid'])).data[0]['channel_name']
+                         db_id = client['client_database_id']
+                         time = conn.send_command('clientinfo clid={}'.format(clid)).data[0]['connection_connected_time'].encode('utf-8')
+                         time = int(time)
+                         seconds = time / 1000 / 60
+                         h, m = divmod(seconds, 60)
+                         since = "{}h {}m".format(h, m)
+                         t.add_row([clid, db_id, nickname, channel, since])
+            print t.get_string(sortby="Channel")
         else:
             print 'Usage: list -s online/offline/all'
 
