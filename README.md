@@ -11,7 +11,7 @@ Do it all, right from your command line!
 ## Installation
 1. Clone this repository 
 2. Open credentials.py and adjust settings to your teamspeak 3 instance
-3. Create alias for this script by adding ```alias ts3='python /path/to/ts3control.py```
+3. Create alias for this script by adding ```alias ts3='python /path/to/ts3control.py'``` to your .bash_profile
 
 ## Usage
 To start a control session, type ts3 (if you created the above alias) followed by:
