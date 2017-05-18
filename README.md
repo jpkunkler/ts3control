@@ -14,7 +14,7 @@ Do it all, right from your command line!
 3. Create alias for this script by adding ```alias ts3='python /path/to/ts3control.py'``` to your .bash_profile
 
 ## Usage
-To start a control session, type ts3 (if you created the above alias) followed by:
+To start a control session, type ```ts3``` (if you created the above alias) followed by:
 
 - -h for help on all functions
 - -list: Lists status for all servers
